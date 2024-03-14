@@ -46,17 +46,22 @@ def main():
     # Define properties
     properties = ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']
 
+    # Default values for each material's properties
+    default_values_HEAs = [80, 8, 200]
+    default_values_Steel = [60, 5, 100]
+    default_values_Aluminum = [40, 7, 150]
+
     # Slider for HEAs
     st.sidebar.subheader('HEAs Values')
-    values_HEAs = [st.sidebar.slider(prop, 0, 100, 50, key=f'hea_slider_{idx}') for idx, prop in enumerate(properties)]
+    values_HEAs = [st.sidebar.slider(prop, 0, 100, default_values_HEAs[idx], key=f'hea_slider_{idx}') for idx, prop in enumerate(properties)]
 
     # Slider for Steel
     st.sidebar.subheader('Steel Values')
-    values_Steel = [st.sidebar.slider(prop, 0, 10, 5, key=f'steel_slider_{idx}') for idx, prop in enumerate(properties)]
+    values_Steel = [st.sidebar.slider(prop, 0, 100, default_values_Steel[idx], key=f'steel_slider_{idx}') for idx, prop in enumerate(properties)]
 
     # Slider for Aluminum
     st.sidebar.subheader('Aluminum Values')
-    values_Aluminum = [st.sidebar.slider(prop, 0, 200, 100, key=f'aluminum_slider_{idx}') for idx, prop in enumerate(properties)]
+    values_Aluminum = [st.sidebar.slider(prop, 0, 200, default_values_Aluminum[idx], key=f'aluminum_slider_{idx}') for idx, prop in enumerate(properties)]
 
     # Show radar chart
     radar_chart(values_HEAs, values_Steel, values_Aluminum, properties)
