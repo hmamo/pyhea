@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 def radar_chart():
     # Define the properties and their values for HEAs, Steel, and Aluminum
     properties = ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']
-    #values_HEAs = [80, 8, 200]
-    values_HEAs = [80, 8, 500]
+    values_HEAs = [80, 8, 200]
     values_Steel = [60, 5, 100]
     values_Aluminum = [40, 7, 150]
 
