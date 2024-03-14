@@ -52,9 +52,9 @@ def main():
     values_Aluminum = []
 
     for prop in ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']:
-        values_HEAs.append(st.side.slider(f'HEAs {prop}', min_value=0, max_value=100, value=50))
-        values_Steel.append(st.side.slider(f'Steel {prop}', min_value=0, max_value=100, value=50))
-        values_Aluminum.append(st.side.slider(f'Aluminum {prop}', min_value=0, max_value=100, value=50))
+        values_HEAs.append(st.sidebar.slider(f'HEAs {prop}', min_value=0, max_value=100, value=50))
+        values_Steel.append(st.sidebar.slider(f'Steel {prop}', min_value=0, max_value=100, value=50))
+        values_Aluminum.append(st.sidebar.slider(f'Aluminum {prop}', min_value=0, max_value=100, value=50))
 
     radar_chart(values_HEAs, values_Steel, values_Aluminum)
 
