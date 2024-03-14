@@ -2,12 +2,9 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-def radar_chart():
-    # Define the properties and their values for HEAs, Steel, and Aluminum
+def radar_chart(values_HEAs, values_Steel, values_Aluminum):
+    # Define the properties
     properties = ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']
-    values_HEAs = [80, 8, 200]
-    values_Steel = [60, 5, 100]
-    values_Aluminum = [40, 7, 150]
 
     # Number of properties
     num_properties = len(properties)
@@ -49,7 +46,17 @@ def main():
     st.title('Radar Chart Comparison')
     st.write('Comparison of Mechanical Strength, Corrosion Resistance, and Thermal Stability for HEAs, Steel, and Aluminum.')
 
-    radar_chart()
+    # Set default values
+    default_values_HEAs = [80, 8, 200]
+    default_values_Steel = [60, 5, 100]
+    default_values_Aluminum = [40, 7, 150]
+
+    # Get user input for values
+    user_values_HEAs = st.sidebar.slider('Mechanical Strength (HEAs)', min_value=0, max_value=100, value=default_values_HEAs[0])
+    user_values_Steel = st.sidebar.slider('Corrosion Resistance (HEAs)', min_value=0, max_value=10, value=default_values_HEAs[1])
+    user_values_Aluminum = st.sidebar.slider('Thermal Stability (HEAs)', min_value=0, max_value=300, value=default_values_HEAs[2])
+
+    radar_chart([user_values_HEAs], [user_values_Steel], [user_values_Aluminum])
 
 if __name__ == "__main__":
     main()
