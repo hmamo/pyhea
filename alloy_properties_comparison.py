@@ -2,10 +2,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-def radar_chart(values_HEAs, values_Steel, values_Aluminum):
-    # Define the properties
-    properties = ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']
-
+def radar_chart(values_HEAs, values_Steel, values_Aluminum, properties):
     # Number of properties
     num_properties = len(properties)
 
@@ -46,17 +43,23 @@ def main():
     st.title('Radar Chart Comparison')
     st.write('Comparison of Mechanical Strength, Corrosion Resistance, and Thermal Stability for HEAs, Steel, and Aluminum.')
 
-    # Input values for each material
-    values_HEAs = []
-    values_Steel = []
-    values_Aluminum = []
+    # Define properties
+    properties = ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']
 
-    for prop in ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']:
-        values_HEAs.append(st.sidebar.slider(f'HEAs {prop}', min_value=0, max_value=100, value=50))
-        values_Steel.append(st.sidebar.slider(f'Steel {prop}', min_value=0, max_value=100, value=50))
-        values_Aluminum.append(st.sidebar.slider(f'Aluminum {prop}', min_value=0, max_value=100, value=50))
+    # Slider for HEAs
+    st.sidebar.subheader('HEAs Values')
+    values_HEAs = [st.sidebar.slider(prop, 0, 100, 50, key=f'hea_slider_{idx}') for idx, prop in enumerate(properties)]
 
-    radar_chart(values_HEAs, values_Steel, values_Aluminum)
+    # Slider for Steel
+    st.sidebar.subheader('Steel Values')
+    values_Steel = [st.sidebar.slider(prop, 0, 10, 5, key=f'steel_slider_{idx}') for idx, prop in enumerate(properties)]
+
+    # Slider for Aluminum
+    st.sidebar.subheader('Aluminum Values')
+    values_Aluminum = [st.sidebar.slider(prop, 0, 200, 100, key=f'aluminum_slider_{idx}') for idx, prop in enumerate(properties)]
+
+    # Show radar chart
+    radar_chart(values_HEAs, values_Steel, values_Aluminum, properties)
 
 if __name__ == "__main__":
     main()
