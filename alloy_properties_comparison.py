@@ -2,14 +2,9 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-def radar_chart(mechanical_strength_HEAs, corrosion_resistance_HEAs, thermal_stability_HEAs,
-                mechanical_strength_Steel, corrosion_resistance_Steel, thermal_stability_Steel,
-                mechanical_strength_Aluminum, corrosion_resistance_Aluminum, thermal_stability_Aluminum):
-    # Define the properties and their values for HEAs, Steel, and Aluminum
+def radar_chart(values_HEAs, values_Steel, values_Aluminum):
+    # Define the properties
     properties = ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']
-    values_HEAs = [mechanical_strength_HEAs, corrosion_resistance_HEAs, thermal_stability_HEAs]
-    values_Steel = [mechanical_strength_Steel, corrosion_resistance_Steel, thermal_stability_Steel]
-    values_Aluminum = [mechanical_strength_Aluminum, corrosion_resistance_Aluminum, thermal_stability_Aluminum]
 
     # Number of properties
     num_properties = len(properties)
@@ -51,28 +46,17 @@ def main():
     st.title('Radar Chart Comparison')
     st.write('Comparison of Mechanical Strength, Corrosion Resistance, and Thermal Stability for HEAs, Steel, and Aluminum.')
 
-    # Input fields for HEAs
-    st.sidebar.header('HEAs')
-    mechanical_strength_HEAs = st.sidebar.slider('Mechanical Strength (HEAs)', min_value=0, max_value=100, value=80)
-    corrosion_resistance_HEAs = st.sidebar.slider('Corrosion Resistance (HEAs)', min_value=0, max_value=10, value=8)
-    thermal_stability_HEAs = st.sidebar.slider('Thermal Stability (HEAs)', min_value=0, max_value=300, value=200)
+    # Input values for each material
+    values_HEAs = []
+    values_Steel = []
+    values_Aluminum = []
 
-    # Input fields for Steel
-    st.sidebar.header('Steel')
-    mechanical_strength_Steel = st.sidebar.slider('Mechanical Strength (Steel)', min_value=0, max_value=100, value=60)
-    corrosion_resistance_Steel = st.sidebar.slider('Corrosion Resistance (Steel)', min_value=0, max_value=10, value=5)
-    thermal_stability_Steel = st.sidebar.slider('Thermal Stability (Steel)', min_value=0, max_value=300, value=100)
+    for prop in ['Mechanical Strength', 'Corrosion Resistance', 'Thermal Stability']:
+        values_HEAs.append(st.slider(f'HEAs {prop}', min_value=0, max_value=100, value=50))
+        values_Steel.append(st.slider(f'Steel {prop}', min_value=0, max_value=100, value=50))
+        values_Aluminum.append(st.slider(f'Aluminum {prop}', min_value=0, max_value=100, value=50))
 
-    # Input fields for Aluminum
-    st.sidebar.header('Aluminum')
-    mechanical_strength_Aluminum = st.sidebar.slider('Mechanical Strength (Aluminum)', min_value=0, max_value=100, value=40)
-    corrosion_resistance_Aluminum = st.sidebar.slider('Corrosion Resistance (Aluminum)', min_value=0, max_value=10, value=7)
-    thermal_stability_Aluminum = st.sidebar.slider('Thermal Stability (Aluminum)', min_value=0, max_value=300, value=150)
-
-    # Generate radar chart based on user input
-    radar_chart(mechanical_strength_HEAs, corrosion_resistance_HEAs, thermal_stability_HEAs,
-                mechanical_strength_Steel, corrosion_resistance_Steel, thermal_stability_Steel,
-                mechanical_strength_Aluminum, corrosion_resistance_Aluminum, thermal_stability_Aluminum)
+    radar_chart(values_HEAs, values_Steel, values_Aluminum)
 
 if __name__ == "__main__":
     main()
