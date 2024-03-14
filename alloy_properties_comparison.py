@@ -56,7 +56,8 @@ def main():
     user_values_Steel = st.sidebar.slider('Corrosion Resistance (HEAs)', min_value=0, max_value=10, value=default_values_HEAs[1])
     user_values_Aluminum = st.sidebar.slider('Thermal Stability (HEAs)', min_value=0, max_value=300, value=default_values_HEAs[2])
 
-    radar_chart([user_values_HEAs], [user_values_Steel], [user_values_Aluminum])
+    radar_chart(user_values_HEAs, user_values_Steel, user_values_Aluminum)
+
 
 if __name__ == "__main__":
     main()
